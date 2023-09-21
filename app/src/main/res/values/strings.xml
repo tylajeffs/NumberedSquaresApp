@@ -1,0 +1,88 @@
+<resources>
+    <string name="app_name">Numbered Squares</string>
+
+    <string name="score_counter">Score: </string>
+
+    <string name="new_high_score_title">NEW HIGH SCORE!</string>
+    <string name="new_high_score_text">You got a new high score of </string>
+    <string name="new_high_score_play_again">! Would you like to play again?</string>
+
+    <string name="game_over_title">GAME OVER</string>
+    <string name="game_over_text">You made it to the last level! Would you like to play again? The current highscore is </string>
+
+    <string name="positive_button_text">Yes</string>
+    <string name="negative_button_text">No</string>
+
+
+    <string name="alphabet">ABCDEFGHIJKLMNOPQRSTUVWXYZ</string>
+    <string name="alphabet_next_level_label">Good job! Tap the letters in alphabetical order. </string>
+    <string name="alphabet_try_again_label">Oops! Tap the letters in alphabetical order.</string>
+    <string name="alphabet_game_name">alphabetGame</string>
+
+
+    <string name="counting_game_name">countingGame</string>
+    <string name="counting_next_level_label">Good job! Advance to level  </string>
+    <string name="counting_try_again_label">Wrong square! Try again</string>
+
+
+    <string name="flower_labels">A AN IVY ROSE PEONY ORCHID BEGONIA MARIGOLD BUTTERCUP</string>
+    <string name="flower_next_level_label">Good job! Now spell: </string>
+    <string name="flower_try_again_label">Oops! You need to spell </string>
+    <string name="flower_game_name">flowerGame</string>
+
+
+    <string name="hawaii_labels">A TO SEA SURF BEACH SHELLS COCONUT MOUNTAIN PINEAPPLE</string>
+    <string name="hawaii_next_level_label">Good job! Now spell: </string>
+    <string name="hawaii_try_again_label">Oops! You need to spell </string>
+    <string name="hawaii_game_name">hawaiiGame</string>
+
+
+    <string name="plant_labels">I TO IVY TREE PLANT FLOWER PLANTER GARDENER VEGETABLE</string>
+    <string name="plant_next_level_label">Good job! Now spell: </string>
+    <string name="plant_try_again_label">Oops! You need to spell </string>
+    <string name="plant_game_name">plantGame</string>
+
+
+    <string name="music_pref_title">Background Music</string>
+    <string name="music_pref_on">on</string>
+    <string name="music_pref_off">off</string>
+
+
+    <string name="background_color_pref_title">Background Color</string>
+    <string name="background_color_pref_on">light</string>
+    <string name="background_color_pref_off">dark</string>
+
+
+    <string name="speed_pref_title">Square Speed</string>
+    <string name="speed_pref_description">How fast will the squares move?</string>
+    <string-array name="speed_pref_options">
+        <item>fast</item>
+        <item>medium</item>
+        <item>slow</item>
+    </string-array>
+
+
+    <string name="square_size_pref_title">Square Size</string>
+    <string name="square_size_pref_description">How large will the squares be?</string>
+    <string-array name="square_size_pref_options">
+        <item>large</item>
+        <item>medium</item>
+        <item>small</item>
+    </string-array>
+
+
+    <string name="game_type_pref_title">Game Type</string>
+    <string name="game_type_pref_description">What game would you like to play?</string>
+    <string-array name="game_type_pref_options">
+        <item>numbers</item>
+        <item>flowers</item>
+        <item>alphabet</item>
+        <item>hawaii</item>
+        <item>plants</item>
+    </string-array>
+
+
+
+
+
+</resources>

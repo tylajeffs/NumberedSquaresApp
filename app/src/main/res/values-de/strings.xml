@@ -1,0 +1,88 @@
+<resources>
+    <string name="app_name">Numbered Squares</string>
+
+    <string name="score_counter">Ergebnis: </string>
+
+    <string name="new_high_score_title">NEUER HIGHSCORE!</string>
+    <string name="new_high_score_text">Du hast einen neuer Highscore von </string>
+    <string name="new_high_score_play_again">! Möchtest du wieder spielen?</string>
+
+    <string name="game_over_title">SPIEL IST AUS</string>
+    <string name="game_over_text">Du hast es bis zum letzten level geschafft! Möchtest du wieder spielen? Der aktuelle Highscore ist </string>
+
+    <string name="positive_button_text">Ja</string>
+    <string name="negative_button_text">Nein</string>
+
+
+    <string name="alphabet">ABCDEFGHIJKLMNOPQRSTUVWXYZÄÖÜß</string>
+    <string name="alphabet_next_level_label">Gut gemacht! Tippe auf die Buchstaben in alphabetischer Reihenfolge. </string>
+    <string name="alphabet_try_again_label">Hoppla! Tippe auf die Buchstaben in alphabetischer Reihenfolge.</string>
+    <string name="alphabet_game_name">alphabetGame</string>
+
+
+    <string name="counting_game_name">countingGame</string>
+    <string name="counting_next_level_label">Gut gemacht! Zum Level vorrücken </string>
+    <string name="counting_try_again_label">Falsches Quadrat! Versuchen Sie es nochmal</string>
+
+
+    <string name="flower_labels">A AN IVY ROSE BLUME ORCHID BEGONIA ORCHIDEE BUTTERCUP</string>
+    <string name="flower_next_level_label">Gut gemacht! Jetzt buchstabiere: </string>
+    <string name="flower_try_again_label">Hoppla! Du musst buchstabieren </string>
+    <string name="flower_game_name">flowerGame</string>
+
+
+    <string name="hawaii_labels">A AN SEA SURF BEACH SHELLS COCONUT MOUNTAIN PINEAPPLE</string>
+    <string name="hawaii_next_level_label">Gut gemacht! Jetzt buchstabiere: </string>
+    <string name="hawaii_try_again_label">Hoppla! Du musst buchstabieren </string>
+    <string name="hawaii_game_name">hawaiiGame</string>
+
+
+    <string name="plant_labels">A AN IVY TREE PLANT FLOWER PLANTER GARDENER VEGETABLE</string>
+    <string name="plant_next_level_label">Gut gemacht! Jetzt buchstabiere: </string>
+    <string name="plant_try_again_label">Hoppla! Du musst buchstabieren </string>
+    <string name="plant_game_name">plantGame</string>
+
+
+    <string name="music_pref_title">Hintergrundmusik</string>
+    <string name="music_pref_on">an</string>
+    <string name="music_pref_off">aus</string>
+
+
+    <string name="background_color_pref_title">Hintergrundfarbe</string>
+    <string name="background_color_pref_on">hell</string>
+    <string name="background_color_pref_off">dunkel</string>
+
+
+    <string name="speed_pref_title">Quadratische Geschwindigkeit</string>
+    <string name="speed_pref_description">Wie schnell bewegen sich die Quadrate??</string>
+    <string-array name="speed_pref_options">
+        <item>schnell</item>
+        <item>mittle</item>
+        <item>langsam</item>
+    </string-array>
+
+
+    <string name="square_size_pref_title">Quadratische Größe</string>
+    <string name="square_size_pref_description">Wie groß werden die quadrate sein?</string>
+    <string-array name="square_size_pref_options">
+        <item>groß</item>
+        <item>mittle</item>
+        <item>klein</item>
+    </string-array>
+
+
+    <string name="game_type_pref_title">Spiel Typ</string>
+    <string name="game_type_pref_description"> Welches Spiel möchtest du spielen?</string>
+    <string-array name="game_type_pref_options">
+        <item>Zahlen</item>
+        <item>Blumen</item>
+        <item>Alphabet</item>
+        <item>Hawaii</item>
+        <item>Pflanzen</item>
+    </string-array>
+
+
+
+
+
+</resources>

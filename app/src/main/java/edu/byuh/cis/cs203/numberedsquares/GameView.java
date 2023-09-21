@@ -68,8 +68,8 @@ public class GameView extends AppCompatImageView implements TimerListener, Score
      * GameView constructor. Just initializes a few variables
      * @param context - required
      */
-    public GameView(Context context)
-    {
+    public GameView(Context context) {
+
         super(context);
 
         //decide how many levels you want
@@ -77,7 +77,6 @@ public class GameView extends AppCompatImageView implements TimerListener, Score
 
         //set context so we can use it outside of constructor
         con = context;
-
 
         //set the calculations done to false
         calcDone = false;
@@ -100,13 +99,11 @@ public class GameView extends AppCompatImageView implements TimerListener, Score
 
 
         //try to open the file with the high score
-        try (Scanner s = new Scanner(context.openFileInput(gameStyle.toString() + ".txt")))
-        {
+        try (Scanner s = new Scanner(context.openFileInput(gameStyle.toString() + ".txt"))) {
             //read the high score and store it
             highScore = s.nextInt();
-        }
-        catch (IOException e)
-        {
+
+        } catch (IOException e) {
             //high score is 0
             highScore = 0;
         }
@@ -123,10 +120,8 @@ public class GameView extends AppCompatImageView implements TimerListener, Score
         scorePaint.setColor(Color.BLACK);
         scorePaint.setTextAlign(Paint.Align.RIGHT);
 
-
         //instantiate and start music based on settings
         startMusic();
-
     }
 
 
@@ -137,11 +132,9 @@ public class GameView extends AppCompatImageView implements TimerListener, Score
      * @param c
      */
     @Override
-    public void onDraw(Canvas c)
-    {
+    public void onDraw(Canvas c) {
 
-        if (!calcDone)
-        {
+        if (!calcDone) {
             //get the width and height
             w = c.getWidth();
             h = c.getHeight();
@@ -156,14 +149,11 @@ public class GameView extends AppCompatImageView implements TimerListener, Score
 
 
         //set the background color depending on the settings
-        if(SettingsActivity.backgroundIsLight(con))
-        {
+        if(SettingsActivity.backgroundIsLight(con)) {
             //light background
             // light green background c.drawColor(Color.rgb(215,228,184));
             c.drawColor(Color.rgb(214,234,255));
-        }
-        else
-        {
+        } else {
             //dark background
             c.drawColor(Color.rgb(101,116,85));
         }
@@ -177,12 +167,10 @@ public class GameView extends AppCompatImageView implements TimerListener, Score
 
 
         //draw each of the squares in the list
-        for (NumberedSquare ns : squares)
-        {
+        for (NumberedSquare ns : squares) {
             //draw the square
             ns.draw(c);
         }
-
     }
 
 
@@ -190,30 +178,24 @@ public class GameView extends AppCompatImageView implements TimerListener, Score
      * helper method to instantiate the correct game type that the user chose
      * in the settings
      */
-    public void instantiateGameType()
-    {
-        if(gameType == 1)
-        {
+    public void instantiateGameType() {
+        if(gameType == 1) {
             //counting game
             gameStyle = new CountingGame(maxLevels, getResources());
-        }
-        else if(gameType == 2)
-        {
+
+        } else if(gameType == 2) {
             //flower game
             gameStyle = new FlowerGame(getResources());
-        }
-        else if(gameType == 3)
-        {
+
+        } else if(gameType == 3) {
             //alphabet game
             gameStyle = new AlphabetGame(maxLevels, getResources());
-        }
-        else if(gameType == 4)
-        {
+
+        } else if(gameType == 4) {
             //hawaii game
             gameStyle = new HawaiiGame(getResources());
-        }
-        else      //game type = 5
-        {
+
+        } else {
             //plant game
             gameStyle = new PlantGame(getResources());
         }
@@ -227,8 +209,8 @@ public class GameView extends AppCompatImageView implements TimerListener, Score
      * Helper method for creating NumberedSquare objects
      * @param labels the list of labels for all the squares you want created in that level
      */
-    private void createSquares(List<String> labels)
-    {
+    private void createSquares(List<String> labels) {
+
         //clear the list of squares
         squares.clear();
 
@@ -238,8 +220,7 @@ public class GameView extends AppCompatImageView implements TimerListener, Score
         NumberedSquare.resetCounter();
 
         //create new numbered squares based on the size of the list of labels
-        for (int i=0; i<labels.size(); i++)
-        {
+        for (int i=0; i<labels.size(); i++) {
 
             //create new numbered square using the labels list
             NumberedSquare ns = new NumberedSquare(labels.get(i),w, h, getResources(), getContext());
@@ -248,11 +229,9 @@ public class GameView extends AppCompatImageView implements TimerListener, Score
             boolean overlaps = false;
 
             //go through each square in the list of squares and see if they overlap
-            for(NumberedSquare square:squares)
-            {
+            for(NumberedSquare square:squares) {
 
-                if(ns.overlaps(square))
-                {
+                if(ns.overlaps(square)) {
                     //set overlaps to true
                     overlaps = true;
 
@@ -266,24 +245,19 @@ public class GameView extends AppCompatImageView implements TimerListener, Score
                     //break the loop and try again
                     break;
                 }
-
             }
 
             //if it doesn't overlap, add it to the squares list
-            if(overlaps == false)
-            {
+            if(overlaps == false) {
                 //add ns to the squares list
                 squares.add(ns);
 
                 //add squares to observers
-                for(NumberedSquare square : squares)
-                {
+                for(NumberedSquare square : squares) {
                     time.addObserver(square);
                 }
             }
-
         }
-
     }
 
 
@@ -298,13 +272,11 @@ public class GameView extends AppCompatImageView implements TimerListener, Score
      */
 
     @Override
-    public boolean onTouchEvent(MotionEvent m)
-    {
-
+    public boolean onTouchEvent(MotionEvent m) {
 
         //figure out if screen was tapped (based on release)
-        if(m.getAction() == MotionEvent.ACTION_UP)
-        {
+        if(m.getAction() == MotionEvent.ACTION_UP) {
+
             //send message to Logcat saying the screen was tapped
             Log.d("log", "screen tapped");
 
@@ -312,21 +284,17 @@ public class GameView extends AppCompatImageView implements TimerListener, Score
             float x = m.getX();
             float y = m.getY();
 
+            for(NumberedSquare square:squares) {
 
-
-            for(NumberedSquare square:squares)
-            {
                 //check if the square contains the coordinates
-                if(square.contains(x,y))
-                {
+                if(square.contains(x,y)) {
 
                     //send message to Logcat saying the square was tapped
                     Log.d("log", "you tapped square " + square.id);
 
 
 
-                    switch (gameStyle.getGameStatus(square))
-                    {
+                    switch (gameStyle.getGameStatus(square)) {
                         case LEVEL_COMPLETE:
 
                             //add the speed bonus points and the level points to the total score
@@ -346,7 +314,6 @@ public class GameView extends AppCompatImageView implements TimerListener, Score
 
                             //start next level
                             startLevel(level);
-
                             break;
 
                         case CONTINUE:
@@ -356,7 +323,6 @@ public class GameView extends AppCompatImageView implements TimerListener, Score
 
                             //increase expected ID
                             expectedId++;
-
                             break;
 
 
@@ -364,9 +330,7 @@ public class GameView extends AppCompatImageView implements TimerListener, Score
                         case TRY_AGAIN:
 
                             //no speed bonus points available if they mess up
-
                             restartLevel();
-
                             break;
 
 
@@ -375,19 +339,13 @@ public class GameView extends AppCompatImageView implements TimerListener, Score
                             //freeze the square
                             square.freeze();
 
-
-
                             //instantiate the alert dialog builder
                             AlertDialog.Builder ab = new AlertDialog.Builder(getContext());
 
-
                             //compare highscore to current score
-                            if(totalScore > highScore)
-                            {
+                            if(totalScore > highScore) {
 
-
-                                try (FileOutputStream highScoreFile = getContext().openFileOutput(gameStyle.toString() + ".txt", Context.MODE_PRIVATE))
-                                {
+                                try (FileOutputStream highScoreFile = getContext().openFileOutput(gameStyle.toString() + ".txt", Context.MODE_PRIVATE)) {
 
                                     //turn the current score into a string
                                     String newHighScore = Integer.toString(totalScore);
@@ -395,9 +353,7 @@ public class GameView extends AppCompatImageView implements TimerListener, Score
                                     //write the new high score into the file
                                     highScoreFile.write(newHighScore.getBytes());
 
-                                }
-                                catch (IOException e)
-                                {
+                                } catch (IOException e) {
                                     Log.d("CS203", "error writing to filesystem");
                                 }
 
@@ -412,12 +368,10 @@ public class GameView extends AppCompatImageView implements TimerListener, Score
                                 ab.setTitle(newHighScoreTitle);
                                 ab.setMessage(newHighScoreText + totalScore + newHighScorePlayAgain);
 
-                            }
-                            else
-                            {
+                            } else {
                                 //get the strings for the new high score output
                                 String gameOverTitle = getResources().getString(R.string.game_over_title);
-                                String gameOverText = getResources().getString(R.string.game_over_title);
+                                String gameOverText = getResources().getString(R.string.game_over_text);
 
 
                                 //set the content of the alert dialog
@@ -431,7 +385,6 @@ public class GameView extends AppCompatImageView implements TimerListener, Score
 
 
                             //set button options
-
                             //get the string for the positive button
                             String positiveText = getResources().getString(R.string.positive_button_text);
 
@@ -446,12 +399,10 @@ public class GameView extends AppCompatImageView implements TimerListener, Score
                                     level = 1;
                                     resetSpeedBonus();
 
-
                                     //re-instantiate the game type object to reset everything
                                     //instantiateGameType();
 
                                     gameStyle.resetGame();
-
 
                                     //create the squares using the labels from the specified game
                                     createSquares(gameStyle.getSquareLabels());
@@ -459,39 +410,26 @@ public class GameView extends AppCompatImageView implements TimerListener, Score
                             });
 
 
-
                             //get the string for the negative button
                             String negativeText = getResources().getString(R.string.negative_button_text);
 
-
                             //negative button with a lambda expression
                             ab.setNegativeButton(negativeText, (d,i) -> ((Activity)getContext()).finish());
-
-
 
                             //create the alert dialog itself
                             AlertDialog box = ab.create();
 
                             //show the alert dialog
                             ab.show();
-
-
                             break;
-
                     }
-
-
                     break;
                 }
             }
 
-
-
-
             //redraw the squares in the list using invalidate method
             invalidate();
         }
-
         //always returns true
         return true;
     }
@@ -503,35 +441,28 @@ public class GameView extends AppCompatImageView implements TimerListener, Score
      * Override doSomething from the TimerListener interface to redraw the screen
      */
     @Override
-    public void doSomething()
-    {
+    public void doSomething() {
         //check to see if any squares are bumping into each other
-        for(NumberedSquare a: squares)
-        {
-            for(NumberedSquare b: squares)
-            {
+        for(NumberedSquare a: squares) {
+            for(NumberedSquare b: squares) {
+
                 //code to make sure there is no redundancy in checking squares against each other
-                if(a.id > b.id)
-                {
+                if(a.id > b.id) {
+
                     //check to see if the two squares overlap
-                    if(a.overlaps(b))
-                    {
+                    if(a.overlaps(b)) {
+
                         //if the sides touching are top or bottom, exchange y velocity
-                        if(findSideHit(a,b) == Side.TOP || findSideHit(b,a) == Side.TOP || findSideHit(a,b) == Side.BOTTOM || findSideHit(b,a) == Side.BOTTOM)
-                        {
+                        if(findSideHit(a,b) == Side.TOP || findSideHit(b,a) == Side.TOP || findSideHit(a,b) == Side.BOTTOM || findSideHit(b,a) == Side.BOTTOM) {
+
                             //check if either of the squares are frozen
-                            if(a.frozen)
-                            {
+                            if(a.frozen) {
                                 //reverse b's y velocity
                                 b.velocity.y *= -1;
-                            }
-                            else if(b.frozen)
-                            {
+                            } else if(b.frozen) {
                                 //reverse a's y velocity
                                 a.velocity.y *= -1;
-                            }
-                            else
-                            {
+                            } else {
                                 //force them apart code keeps breaking!
                                 //force them apart
                                 //forceApart(a,b);
@@ -542,21 +473,19 @@ public class GameView extends AppCompatImageView implements TimerListener, Score
                         }
 
                         //if sides touching are left or right, exchange x velocity
-                        if(findSideHit(a,b) == Side.LEFT || findSideHit(b,a) == Side.LEFT|| findSideHit(a,b) == Side.RIGHT || findSideHit(b,a) == Side.RIGHT)
-                        {
+                        if(findSideHit(a,b) == Side.LEFT || findSideHit(b,a) == Side.LEFT|| findSideHit(a,b) == Side.RIGHT || findSideHit(b,a) == Side.RIGHT) {
+
                             //check if either of the squares are frozen
-                            if(a.frozen)
-                            {
+                            if(a.frozen) {
+
                                 //reverse b's x velocity
                                 b.velocity.x *= -1;
-                            }
-                            else if(b.frozen)
-                            {
+                            } else if(b.frozen) {
+
                                 //reverse a's x velocity
                                 a.velocity.x *= -1;
-                            }
-                            else
-                            {
+                            } else {
+
                                 // force them apart code keeps breaking!
                                 //force them apart
                                 //forceApart(a,b);
@@ -564,18 +493,11 @@ public class GameView extends AppCompatImageView implements TimerListener, Score
                                 //exchange x velocities
                                 exchangeXVelocity(a,b);
                             }
-
                         }
-
                     }
-
                 }
-
             }
-
         }
-
-
 
         //make the screen redraw by calling invalidate
         invalidate();
@@ -591,15 +513,13 @@ public class GameView extends AppCompatImageView implements TimerListener, Score
      * @param a numbered square
      * @param b numbered square
      */
-    public void exchangeYVelocity(NumberedSquare a, NumberedSquare b)
-    {
+    public void exchangeYVelocity(NumberedSquare a, NumberedSquare b) {
         //store square a's y velocity
         float aVel = a.velocity.y;
 
         //exchange velocities
         a.velocity.y = b.velocity.y;
         b.velocity.y = aVel;
-
     }
 
 
@@ -610,15 +530,14 @@ public class GameView extends AppCompatImageView implements TimerListener, Score
      * @param a numbered square
      * @param b numbered square
      */
-    public void exchangeXVelocity(NumberedSquare a, NumberedSquare b)
-    {
+    public void exchangeXVelocity(NumberedSquare a, NumberedSquare b) {
+
         //store square a's x velocity
         float aVel = a.velocity.x;
 
         //exchange velocities
         a.velocity.x = b.velocity.x;
         b.velocity.x = aVel;
-
     }
 
 
@@ -632,8 +551,8 @@ public class GameView extends AppCompatImageView implements TimerListener, Score
      * @param b numbered square to be tested
      * @return an emum, which side got hit on square a
      */
-    public Side findSideHit(NumberedSquare a, NumberedSquare b)
-    {
+    public Side findSideHit(NumberedSquare a, NumberedSquare b) {
+
         //initialize hitSide to empty (for debugging)
         Side hitSide = Side.EMPTY;
 
@@ -646,33 +565,24 @@ public class GameView extends AppCompatImageView implements TimerListener, Score
         //find the smallest one
         float smallest = Math.min(Math.min(rightDif,leftDif),Math.min(topDif,bottomDif));
 
-
-
         //assign enum based on which is smallest
-
         //right
-        if(smallest == rightDif)
-        {
+        if(smallest == rightDif) {
             //assign right
             hitSide = Side.RIGHT;
-
         }
         //left
-        if(smallest == leftDif)
-        {
+        if(smallest == leftDif) {
             //assign left
             hitSide = Side.LEFT;
-
         }
         //top
-        if(smallest == topDif)
-        {
+        if(smallest == topDif) {
             //assign top
             hitSide = Side.TOP;
         }
         //bottom
-        if(smallest == bottomDif)
-        {
+        if(smallest == bottomDif) {
             //assign bottom
             hitSide = Side.BOTTOM;
         }
@@ -715,18 +625,15 @@ public class GameView extends AppCompatImageView implements TimerListener, Score
     /**
      * method to restart the level when the user touches the wrong square
      */
-    public void restartLevel()
-    {
+    public void restartLevel() {
         startLevel(level);
 
         //send toast message
         Toast t = Toast.makeText(getContext(),gameStyle.getTryAgainLabel(getResources()),Toast.LENGTH_SHORT);
         t.show();
 
-
         //send message to Logcat saying the level restarted
         Log.d("log", "level restarted");
-
     }
 
 
@@ -735,14 +642,12 @@ public class GameView extends AppCompatImageView implements TimerListener, Score
      *
      * @param lev the level the user is on
      */
-    public void startLevel(int lev)
-    {
+    public void startLevel(int lev) {
         //reset expected ID
         resetExpectedId();
 
         //unregister previous squares
-        for(NumberedSquare square : squares)
-        {
+        for(NumberedSquare square : squares) {
             time.removeObserver(square);
         }
 
@@ -757,8 +662,7 @@ public class GameView extends AppCompatImageView implements TimerListener, Score
     /**
      * helper method to reset the expected ID back to 1
      */
-    public void resetExpectedId()
-    {
+    public void resetExpectedId() {
         //set expected ID to 1
         expectedId = 1;
     }
@@ -767,11 +671,9 @@ public class GameView extends AppCompatImageView implements TimerListener, Score
     /**
      * helper method that increases the level by 1
      */
-    public void levelUp()
-    {
+    public void levelUp() {
         //increase level
         level++;
-
     }
 
 
@@ -780,47 +682,38 @@ public class GameView extends AppCompatImageView implements TimerListener, Score
     /**
      * method for when the app gets paused. Takes care of pausing music
      */
-    public void pause()
-    {
+    public void pause() {
         //pause background music
         pauseMusic();
-
     }
 
     /**
      * method for when app is resumed
      */
-    public void resume()
-    {
+    public void resume() {
         //resume background music
         resumeMusic();
-
     }
 
 
     /**
      * method to take care of all cleanup on shutdown
      */
-    public void shutdownCleanup()
-    {
+    public void shutdownCleanup() {
         //make sure music exists
-        if(music != null)
-        {
+        if(music != null) {
             //kill the background music
             music.release();
         }
-
     }
 
 
     /**
      * method that pauses the background music
      */
-    public void pauseMusic()
-    {
+    public void pauseMusic() {
         //make sure music exists
-        if(music != null)
-        {
+        if(music != null) {
             //pause the music
             music.pause();
         }
@@ -830,31 +723,25 @@ public class GameView extends AppCompatImageView implements TimerListener, Score
     /**
      * method for resuming the background music
      */
-    public void resumeMusic()
-    {
+    public void resumeMusic() {
         //make sure music exists
-        if(music != null)
-        {
+        if(music != null) {
             //resume the music
             music.start();
         }
-
     }
 
 
     /**
      * helper method to start the music in the very beginning of the game
      */
-    public void startMusic()
-    {
+    public void startMusic() {
         //check to see if the user set the music setting to on
-        if(SettingsActivity.soundOn(con))
-        {
+        if(SettingsActivity.soundOn(con)) {
             music = MediaPlayer.create(con,R.raw.music);
             music.start();
             music.setLooping(true);
         }
-
     }
 
 
@@ -865,11 +752,9 @@ public class GameView extends AppCompatImageView implements TimerListener, Score
      * by one for each second the level is not completed
      */
     @Override
-    public void decreaseScore()
-    {
+    public void decreaseScore() {
         //make sure level score doesn't go below 0
-        if(speedBonusScore > 0 )
-        {
+        if(speedBonusScore > 0 ) {
             //for every second that goes by in the level, decrease level score by 1
             speedBonusScore -= 1;
         }
@@ -884,8 +769,7 @@ public class GameView extends AppCompatImageView implements TimerListener, Score
      * level 2 = 6 points available
      * level 3 = 9 points available
      */
-    private void resetSpeedBonus()
-    {
+    private void resetSpeedBonus() {
         //set level score to be 2 points for the first level, and add 2 more points for each
         //additional level
         speedBonusScore = 2 + ((level-0)*2);
@@ -895,8 +779,7 @@ public class GameView extends AppCompatImageView implements TimerListener, Score
     /**
      * helper method to set the total score to 0
      */
-    public void resetTotalScore()
-    {
+    public void resetTotalScore() {
         //set total score to 0
         totalScore = 0;
     }

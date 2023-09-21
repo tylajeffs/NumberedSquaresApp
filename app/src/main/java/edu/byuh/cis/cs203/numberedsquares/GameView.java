@@ -159,7 +159,8 @@ public class GameView extends AppCompatImageView implements TimerListener, Score
         if(SettingsActivity.backgroundIsLight(con))
         {
             //light background
-            c.drawColor(Color.rgb(215,228,184));
+            // light green background c.drawColor(Color.rgb(215,228,184));
+            c.drawColor(Color.rgb(214,234,255));
         }
         else
         {

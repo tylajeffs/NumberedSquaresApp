@@ -89,11 +89,11 @@ public class NumberedSquare implements TimerListener
         squareBounds = new RectF(x, y, x+size, y+size);
 
         //load normal square image
-        normalSquare = BitmapFactory.decodeResource(r,R.drawable.square);
+        normalSquare = BitmapFactory.decodeResource(r,R.drawable.mediumbluesquare);
         normalSquare = Bitmap.createScaledBitmap(normalSquare,(int)squareBounds.width(),(int)squareBounds.height(),true);
 
         //load frozen square image
-        glitter = BitmapFactory.decodeResource(r,R.drawable.silver);
+        glitter = BitmapFactory.decodeResource(r,R.drawable.darkfrozensquare);
         glitter = Bitmap.createScaledBitmap(glitter,(int)squareBounds.width(),(int)squareBounds.height(),true);
 
         //create new paint objects for the square and the text
@@ -108,7 +108,7 @@ public class NumberedSquare implements TimerListener
 
         //set text attributes
         textPaint.setTextSize(65);
-        textPaint.setColor(Color.BLACK);
+        textPaint.setColor(Color.WHITE);
         textPaint.setTextAlign(Paint.Align.CENTER);
 
         //instantiate random object

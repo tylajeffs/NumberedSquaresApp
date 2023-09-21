@@ -24,7 +24,7 @@ public class BeginningActivity extends Activity
 
         //load the image background
         background = new ImageView(this);
-        background.setImageResource(R.drawable.startscreen);
+        background.setImageResource(R.drawable.blue_startscreen);
         background.setScaleType(ImageView.ScaleType.FIT_XY);
 
         //set the content view

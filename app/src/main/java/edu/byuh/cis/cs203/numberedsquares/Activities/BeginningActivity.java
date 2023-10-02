@@ -12,13 +12,13 @@ import edu.byuh.cis.cs203.numberedsquares.R;
  * Created by tylajeffs
  */
 
-public class BeginningActivity extends Activity
-{
+public class BeginningActivity extends Activity {
+
     private ImageView background;
 
     @Override
-    public void onCreate(Bundle b)
-    {
+    public void onCreate(Bundle b) {
+
         //always call super
         super.onCreate(b);
 
@@ -29,15 +29,14 @@ public class BeginningActivity extends Activity
 
         //set the content view
         setContentView(background);
-
     }
 
     @Override
-    public boolean onTouchEvent(MotionEvent m)
-    {
+    public boolean onTouchEvent(MotionEvent m) {
+
         //if user touches screen, start game or go to settings
-        if(m.getAction() == MotionEvent.ACTION_DOWN)
-        {
+        if(m.getAction() == MotionEvent.ACTION_DOWN) {
+
             //find the coordinates that were tapped
             float x = m.getX();
             float y = m.getY();
@@ -47,14 +46,13 @@ public class BeginningActivity extends Activity
             float height = background.getHeight();
 
             //if coordinates are on the settings button, change to settings page
-            if(x > (0.75 * width) && y > (0.8 * height))
-            {
+            if(x > (0.75 * width) && y > (0.8 * height)) {
+
                 //launch settings page
                 Intent i = new Intent(this, SettingsActivity.class);
                 startActivity(i);
-            }
-            else
-            {
+            } else {
+
                 //start the game (MainActivity)
                 Intent i = new Intent(this, MainActivity.class);
                 startActivity(i);
@@ -62,16 +60,9 @@ public class BeginningActivity extends Activity
                 //kill the beginning page/activity
                 finish();
             }
-
-
-
         }
-
 
         //always returns true
         return true;
     }
-
-
-
 }
